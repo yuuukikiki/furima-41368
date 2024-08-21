@@ -2,9 +2,9 @@
 
 ## users テーブル
 
-| Column                | Type   | Options     |
-| ----------------------| ------ | ----------- |
-| nickname              | string | null: false |
+| Column                | Type   | Options      |
+| ----------------------| ------ | ------------ |
+| nickname              | string | null: false  |
 | email                 | string | null: false, unique: true |
 | encrypted_password    | string | null: false  |
 | last_name             | string | null: false  |
@@ -44,12 +44,12 @@
 | -----------------| ---------- | ----------- |
 | name             | string     | null: false |
 | description      | text       | null: false |
+| price            | integer    | null: false |
+| user             | references | null: false, foreign_key: true|
 | category_id      | integer    | null: false |
 | condition_id     | integer    | null: false |
 | shipping_fee_id  | integer    | null: false |
 | shipping_time_id | integer    | null: false |
-| price            | integer    | null: false |
-| user             | references | null: false, foreign_key: true|
 | prefecture_id    | integer    | null: false |    
 
 
@@ -58,14 +58,18 @@
 - belongs_to :user
 - has_one :order
 - belongs_to_active_hash :prefecture
+- belongs_to_active_hash :category
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :shipping_fee
+- belongs_to_active_hash :shipping_time
 
 
 ## orders テーブル
 
-| Column     | Type      | Options     |
-| ---------- | --------- | ----------- |
-| product    | reference | null: false, foreign_key: true  |
-| user       | reference | null: false, foreign_key: true  |
+| Column     | Type       | Options                         |
+| ---------- | ---------- | ------------------------------- |
+| product    | references | null: false, foreign_key: true  |
+| user       | references | null: false, foreign_key: true  |
 
 ### Association
 
