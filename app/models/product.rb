@@ -9,8 +9,10 @@ class Product < ApplicationRecord
             format: { with: /\A[0-9]+\z/ },
             numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
 
+  validates :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_time_id,
+            numericality: { other_than: 1, message: 'please select' }
+
   belongs_to :user
-  has_one :order
 
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
