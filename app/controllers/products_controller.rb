@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_product, only: :show
+
   def index
     @products = Product.all.order(created_at: :desc)
   end
@@ -15,9 +17,16 @@ class ProductsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+
+    def show
+    end
   end
 
   private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:name, :description, :category_id, :condition_id,
