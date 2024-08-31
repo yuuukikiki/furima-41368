@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   def check_access
-    return unless @product.is_sold_out? || (current_user && (current_user == @product.user || @product.is_sold_out?))
+    return unless @product.is_sold_out? || current_user == @product.user
 
     redirect_to root_path
   end
