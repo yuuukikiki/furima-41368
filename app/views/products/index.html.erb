@@ -134,8 +134,7 @@
             <div class='item-img-content'>
               <%= image_tag product.image.attached? ? url_for(product.image) : "item-sample.png", class: "item-img" %>
               
-              <%# 商品が売れていればsold outを表示しましょう %>
-              <% if false %>  <!-- 仮の条件として false を使用 -->
+              <% if product.is_sold_out? %>
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
                 </div>
