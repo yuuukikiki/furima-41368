@@ -20,5 +20,10 @@ class Product < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :shipping_time
 
+  has_one :order
   has_one_attached :image
+
+  def is_sold_out?
+    Order.where(product_id: id).exists?
+  end
 end
