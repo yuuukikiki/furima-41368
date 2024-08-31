@@ -85,6 +85,12 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
+
+      it 'productが紐付いていないと保存できないこと' do
+        @order_address.product_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Product can't be blank")
+      end
     end
   end
 end
